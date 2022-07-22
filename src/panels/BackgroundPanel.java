@@ -17,7 +17,7 @@ public class BackgroundPanel extends JPanel {
 	private Integer quantity;
 
 	public BackgroundPanel(Integer maxSize, Integer quantity) {
-		this.backgroundColor = Color.gray;
+		this.backgroundColor = Color.GRAY;
 		this.maxSize = maxSize;
 		this.quantity = quantity;
 		this.size = maxSize / quantity;
@@ -30,7 +30,7 @@ public class BackgroundPanel extends JPanel {
 
 		for (int i = 0; i < quantity; i++) {
 			for (int j = 0; j < quantity; j++) {
-				pinter.fillRect(j * size, j * size, size - 1, size - 1);
+				pinter.fillRect(i * size, j * size, size - 1, size - 1);
 			}
 		}
 	}

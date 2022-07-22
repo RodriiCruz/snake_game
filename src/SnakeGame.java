@@ -1,11 +1,10 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import panels.BackgroundPanel;
+import panels.SnakePanel;
 
 /**
  * 
@@ -13,16 +12,27 @@ import panels.BackgroundPanel;
  */
 public class SnakeGame extends JFrame {
 
-	private final int MAX_SIZE = 800;
+	private final int MAX_SIZE = 600;
 	private final int QUANTITY = 30;
 	private JPanel contentPane;
 	private BackgroundPanel bgPanel;
+	private SnakePanel snakePanel;
 
 	public SnakeGame() {
 		initComponents();
-		this.bgPanel = new BackgroundPanel(MAX_SIZE, QUANTITY);
+		this.setLocationRelativeTo(null);
+		contentPane.setLayout(null);
 
-		this.add(bgPanel);
+		this.snakePanel = new SnakePanel(MAX_SIZE, QUANTITY);
+		getContentPane().add(snakePanel);
+		snakePanel.setBounds(5, 5, 601, 599);
+		snakePanel.setOpaque(false);
+		snakePanel.setLayout(null);
+
+		this.bgPanel = new BackgroundPanel(MAX_SIZE, QUANTITY);
+		getContentPane().add(bgPanel);
+		bgPanel.setBounds(5, 5, 601, 599);
+		bgPanel.setLayout(null);
 	}
 
 	/**
@@ -45,13 +55,12 @@ public class SnakeGame extends JFrame {
 	 * Create the frame.
 	 */
 	public void initComponents() {
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 607, 673);
+		setBounds(100, 100, 627, 648);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setBorder(null);
 		setContentPane(contentPane);
+		setResizable(false);
 	}
 
 }
