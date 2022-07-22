@@ -18,8 +18,8 @@ import services.GameService;
  */
 public class SnakeGame extends JFrame {
 
-	private final int MAX_SIZE = 600;
-	private final int QUANTITY = 40;
+	private final int WINDOW_SIZE = 600;
+	private final int QUANTITY = 30; // Cantidad de posiciones en una dirección
 	private Snake snake;
 	private JPanel contentPane;
 	private BackgroundPanel bgPanel;
@@ -34,7 +34,7 @@ public class SnakeGame extends JFrame {
 		btnMove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				gameService.move(snake);
+				gameService.move(snake, QUANTITY);
 				snakePanel.repaint();
 			}
 		});
@@ -64,7 +64,7 @@ public class SnakeGame extends JFrame {
 	 */
 	public void initComponents() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, MAX_SIZE + 25, MAX_SIZE + 48);
+		setBounds(100, 100, WINDOW_SIZE + 25, WINDOW_SIZE + 48);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
@@ -74,15 +74,15 @@ public class SnakeGame extends JFrame {
 
 		this.gameService = new GameService();
 		this.snake = new Snake(Color.GREEN, Color.RED);
-		this.snakePanel = new SnakePanel(MAX_SIZE, QUANTITY, snake);
+		this.snakePanel = new SnakePanel(WINDOW_SIZE, QUANTITY, snake);
 		getContentPane().add(snakePanel);
-		snakePanel.setBounds(5, 5, MAX_SIZE, MAX_SIZE);
+		snakePanel.setBounds(5, 5, WINDOW_SIZE, WINDOW_SIZE);
 		snakePanel.setOpaque(false);
 		snakePanel.setLayout(null);
 
-		this.bgPanel = new BackgroundPanel(MAX_SIZE, QUANTITY);
+		this.bgPanel = new BackgroundPanel(WINDOW_SIZE, QUANTITY);
 		getContentPane().add(bgPanel);
-		bgPanel.setBounds(5, 5, MAX_SIZE + 25, MAX_SIZE + 48);
+		bgPanel.setBounds(5, 5, WINDOW_SIZE + 25, WINDOW_SIZE + 48);
 		bgPanel.setLayout(null);
 	}
 }

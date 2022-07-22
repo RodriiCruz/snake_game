@@ -8,7 +8,7 @@ import models.Snake;
  */
 public class GameService {
 
-	public void move(Snake snake) {
+	public void move(Snake snake, int quantity) {
 		Integer[] snakeHead = snake.getBody().get(snake.getBody().size() - 1);
 
 		int newX = 0;
@@ -31,7 +31,8 @@ public class GameService {
 			break;
 		}
 
-		Integer[] newDir = { snakeHead[0] + newX, snakeHead[1] + newY };
+		Integer[] newDir = { Math.floorMod(snakeHead[0] + newX, quantity),
+				Math.floorMod(snakeHead[1] + newY, quantity) };
 
 		snake.move(newDir);
 	}
