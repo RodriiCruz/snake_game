@@ -1,6 +1,5 @@
 package panels;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -14,15 +13,13 @@ import models.Snake;
 public class SnakePanel extends JPanel {
 
 	private Snake snake;
-	private Integer maxSize;
 	private Integer size;
-	private Integer quantity;
+	private Integer margin;
 
-	public SnakePanel(Integer maxSize, Integer quantity) {
-		this.snake = new Snake(Color.GREEN, Color.RED);
-		this.maxSize = maxSize;
-		this.quantity = quantity;
+	public SnakePanel(Integer maxSize, Integer quantity, Snake snake) {
+		this.snake = snake;
 		this.size = maxSize / quantity;
+		this.margin = (maxSize % quantity) / 2;
 		Integer[] a = { quantity / 2 - 1, quantity / 2 - 1 };
 		Integer[] b = { quantity / 2, quantity / 2 - 1 };
 
@@ -36,8 +33,11 @@ public class SnakePanel extends JPanel {
 		pinter.setColor(snake.getSnakeColor());
 
 		for (Integer[] part : snake.getBody()) {
-			pinter.fillRect(part[0] * size, part[1] * size, size - 1, size - 1);
+			pinter.fillRect(margin + part[0] * size, margin + part[1] * size, size - 1, size - 1);
 		}
 	}
 
+	public Snake getSnake() {
+		return snake;
+	}
 }

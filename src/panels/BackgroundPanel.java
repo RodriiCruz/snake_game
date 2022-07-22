@@ -12,15 +12,15 @@ import javax.swing.JPanel;
 public class BackgroundPanel extends JPanel {
 
 	private Color backgroundColor;
-	private Integer maxSize;
 	private Integer size;
 	private Integer quantity;
+	private Integer margin;
 
 	public BackgroundPanel(Integer maxSize, Integer quantity) {
 		this.backgroundColor = Color.GRAY;
-		this.maxSize = maxSize;
 		this.quantity = quantity;
 		this.size = maxSize / quantity;
+		this.margin = (maxSize % quantity) / 2;
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class BackgroundPanel extends JPanel {
 
 		for (int i = 0; i < quantity; i++) {
 			for (int j = 0; j < quantity; j++) {
-				pinter.fillRect(i * size, j * size, size - 1, size - 1);
+				pinter.fillRect(margin + i * size, margin + j * size, size - 1, size - 1);
 			}
 		}
 	}
