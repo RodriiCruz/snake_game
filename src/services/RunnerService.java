@@ -8,11 +8,14 @@ import panels.GamePanel;
  */
 public class RunnerService implements Runnable {
 
-	private final Integer TIME_TO_SLEEP = 200;
+	private Integer timeToSleep;
+	private Integer lvl;
 	private GameService gameService;
 	private GamePanel snakePanel;
 
 	public RunnerService(GameService gameService, GamePanel snakePanel) {
+		this.timeToSleep = 200;
+		this.lvl = 1;
 		this.gameService = gameService;
 		this.snakePanel = snakePanel;
 	}
@@ -20,10 +23,17 @@ public class RunnerService implements Runnable {
 	@Override
 	public void run() {
 		while (Boolean.TRUE) {
+			if (gameService.getScore() % 5 == 0 && timeToSleep > 20) {
+				if (gameService.getScore() / 5 == lvl) {
+					this.timeToSleep -= 30;
+					lvl++;
+				}
+			}
+
 			gameService.move();
 			snakePanel.repaint();
 			try {
-				Thread.sleep(TIME_TO_SLEEP);
+				Thread.sleep(timeToSleep);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

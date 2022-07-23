@@ -48,8 +48,4 @@ public class GamePanel extends JPanel {
 		pinter.setFont(new Font("Arial", Font.BOLD, 20));
 		pinter.drawString("Score: " + snake.getBody().size(), 15, 25);
 	}
-
-	public Snake getSnake() {
-		return snake;
-	}
 }

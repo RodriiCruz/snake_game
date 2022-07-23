@@ -99,7 +99,10 @@ public class GameService {
 				break;
 			}
 		}
+	}
 
+	public int getScore() {
+		return snake.getBody().size();
 	}
 
 }
