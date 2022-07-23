@@ -1,6 +1,6 @@
 package services;
 
-import panels.SnakePanel;
+import panels.GamePanel;
 
 /**
  * 
@@ -10,9 +10,9 @@ public class RunnerService implements Runnable {
 
 	private final Integer TIME_TO_SLEEP = 200;
 	private GameService gameService;
-	private SnakePanel snakePanel;
+	private GamePanel snakePanel;
 
-	public RunnerService(GameService gameService, SnakePanel snakePanel) {
+	public RunnerService(GameService gameService, GamePanel snakePanel) {
 		this.gameService = gameService;
 		this.snakePanel = snakePanel;
 	}

@@ -22,10 +22,10 @@ public class Checker {
 		this.food = food;
 	}
 
-	public void checkBody(Integer[] position) {
+	public void checkCollisions(Integer[] position) {
 		for (Integer[] aux : snake.getBody()) {
 			if (aux[0] == position[0] && aux[1] == position[1]) {
-				JOptionPane.showMessageDialog(null, "Chocaste contra tu cuerpo! Juego terminado.");
+				JOptionPane.showMessageDialog(null, "Game over");
 				System.exit(0);
 			}
 		}
@@ -35,7 +35,6 @@ public class Checker {
 		boolean isFood = false;
 		if (food.getPosition()[0] == position[0] && food.getPosition()[1] == position[1]) {
 			isFood = true;
-			snake.eatFood(position);
 		}
 		return isFood;
 	}

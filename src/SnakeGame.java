@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import models.Food;
 import models.Snake;
 import panels.BackgroundPanel;
-import panels.SnakePanel;
+import panels.GamePanel;
 import services.GameService;
 import services.RunnerService;
 
@@ -25,7 +25,7 @@ public class SnakeGame extends JFrame {
 	private Food food;
 	private JPanel contentPane;
 	private BackgroundPanel bgPanel;
-	private SnakePanel snakePanel;
+	private GamePanel snakePanel;
 	private GameService gameService;
 	private RunnerService runnerService;
 	private Thread thread;
@@ -75,7 +75,7 @@ public class SnakeGame extends JFrame {
 		this.snake = new Snake(Color.GREEN);
 		this.food = new Food(Color.RED);
 		this.gameService = new GameService(QUANTITY, snake, food);
-		this.snakePanel = new SnakePanel(WINDOW_SIZE, QUANTITY, snake, food);
+		this.snakePanel = new GamePanel(WINDOW_SIZE, QUANTITY, snake, food);
 		getContentPane().add(snakePanel);
 		snakePanel.setBounds(5, 5, WINDOW_SIZE, WINDOW_SIZE);
 		snakePanel.setOpaque(false);

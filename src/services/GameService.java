@@ -51,7 +51,7 @@ public class GameService {
 		Integer[] newDir = { Math.floorMod(snakeHead[0] + newX, quantity),
 				Math.floorMod(snakeHead[1] + newY, quantity) };
 
-		this.checker.checkBody(newDir);
+		this.checker.checkCollisions(newDir);
 
 		boolean isFood = this.checker.checkFood(newDir);
 		if (isFood) {

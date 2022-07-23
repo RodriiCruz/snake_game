@@ -1,5 +1,7 @@
 package panels;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -11,14 +13,14 @@ import models.Snake;
  * 
  * @author Rodrigo Cruz <rodriikc@gmail.com>
  */
-public class SnakePanel extends JPanel {
+public class GamePanel extends JPanel {
 
 	private Snake snake;
 	private Food food;
 	private Integer size;
 	private Integer margin;
 
-	public SnakePanel(Integer maxSize, Integer quantity, Snake snake, Food food) {
+	public GamePanel(Integer maxSize, Integer quantity, Snake snake, Food food) {
 		this.snake = snake;
 		this.food = food;
 		this.size = maxSize / quantity;
@@ -41,6 +43,10 @@ public class SnakePanel extends JPanel {
 
 		pinter.setColor(food.getFoodColor());
 		pinter.fillRect(food.getPosition()[0] * size, margin + food.getPosition()[1] * size, size - 1, size - 1);
+
+		pinter.setColor(Color.WHITE);
+		pinter.setFont(new Font("Arial", Font.BOLD, 20));
+		pinter.drawString("Score: " + snake.getBody().size(), 15, 25);
 	}
 
 	public Snake getSnake() {
