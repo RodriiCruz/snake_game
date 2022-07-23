@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import models.Food;
 import models.Snake;
 import panels.BackgroundPanel;
 import panels.SnakePanel;
@@ -21,6 +22,7 @@ public class SnakeGame extends JFrame {
 	private final int WINDOW_SIZE = 600;
 	private final int QUANTITY = 30; // Cantidad de posiciones en una dirección
 	private Snake snake;
+	private Food food;
 	private JPanel contentPane;
 	private BackgroundPanel bgPanel;
 	private SnakePanel snakePanel;
@@ -29,12 +31,13 @@ public class SnakeGame extends JFrame {
 
 	public SnakeGame() {
 		initComponents();
+		gameService.generateFood();
 
 		btnMove = new JButton("Move");
 		btnMove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				gameService.move(snake, QUANTITY);
+				gameService.move();
 				snakePanel.repaint();
 			}
 		});
@@ -72,9 +75,10 @@ public class SnakeGame extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 
-		this.gameService = new GameService();
-		this.snake = new Snake(Color.GREEN, Color.RED);
-		this.snakePanel = new SnakePanel(WINDOW_SIZE, QUANTITY, snake);
+		this.snake = new Snake(Color.GREEN);
+		this.food = new Food(Color.RED);
+		this.gameService = new GameService(QUANTITY, snake, food);
+		this.snakePanel = new SnakePanel(WINDOW_SIZE, QUANTITY, snake, food);
 		getContentPane().add(snakePanel);
 		snakePanel.setBounds(5, 5, WINDOW_SIZE, WINDOW_SIZE);
 		snakePanel.setOpaque(false);

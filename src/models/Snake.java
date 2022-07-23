@@ -14,13 +14,11 @@ public class Snake {
 
 	private Color snakeColor;
 	private List<Integer[]> body;
-	private Color foodColor;
 	private Direction direction;
 
-	public Snake(Color snakeColor, Color foodColor) {
+	public Snake(Color snakeColor) {
 		this.snakeColor = snakeColor;
 		this.body = new ArrayList<Integer[]>();
-		this.foodColor = foodColor;
 		this.direction = Direction.RIGHT;
 	}
 
@@ -40,17 +38,12 @@ public class Snake {
 		this.body.add(food);
 	}
 
-	public void move(Integer[] dir) {
-		this.body.add(dir);
-		this.body.remove(0);
-	}
+	public void move(Integer[] dir, boolean isFood) {
+		body.add(dir);
 
-	public Color getFoodColor() {
-		return foodColor;
-	}
-
-	public void setFoodColor(Color foodColor) {
-		this.foodColor = foodColor;
+		if (!isFood) {
+			body.remove(0);
+		}
 	}
 
 	public Direction getDirection() {
