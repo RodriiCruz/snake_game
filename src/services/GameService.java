@@ -1,7 +1,10 @@
 package services;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.JOptionPane;
 
+import enums.Direction;
 import models.Food;
 import models.Snake;
 
@@ -70,7 +73,29 @@ public class GameService {
 		}
 	}
 
-	public void checkBody(Integer[] position) {
+	public void changeDirection(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_UP:
+			snake.setDirection(Direction.UP);
+			break;
+		case KeyEvent.VK_RIGHT:
+			snake.setDirection(Direction.RIGHT);
+			break;
+		case KeyEvent.VK_DOWN:
+			snake.setDirection(Direction.DOWN);
+			break;
+		case KeyEvent.VK_LEFT:
+			snake.setDirection(Direction.LEFT);
+			break;
+		case KeyEvent.VK_SPACE:
+			snake.setDirection(Direction.LEFT);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void checkBody(Integer[] position) {
 		for (Integer[] aux : snake.getBody()) {
 			if (aux[0] == position[0] && aux[1] == position[1]) {
 				JOptionPane.showMessageDialog(null, "Chocaste contra tu cuerpo! Juego terminado.");
@@ -79,7 +104,7 @@ public class GameService {
 		}
 	}
 
-	public boolean checkFood(Integer[] position) {
+	private boolean checkFood(Integer[] position) {
 		boolean isFood = false;
 		if (food.getPosition()[0] == position[0] && food.getPosition()[1] == position[1]) {
 			isFood = true;

@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,6 +34,13 @@ public class SnakeGame extends JFrame {
 		initComponents();
 		gameService.generateFood();
 		runThread();
+
+		addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				gameService.changeDirection(e);
+			}
+		});
 	}
 
 	/**
