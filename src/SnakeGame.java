@@ -1,9 +1,6 @@
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -12,6 +9,7 @@ import models.Snake;
 import panels.BackgroundPanel;
 import panels.SnakePanel;
 import services.GameService;
+import services.RunnerService;
 
 /**
  * 
@@ -26,24 +24,14 @@ public class SnakeGame extends JFrame {
 	private JPanel contentPane;
 	private BackgroundPanel bgPanel;
 	private SnakePanel snakePanel;
-	private JButton btnMove;
 	private GameService gameService;
+	private RunnerService runnerService;
+	private Thread thread;
 
 	public SnakeGame() {
 		initComponents();
 		gameService.generateFood();
-
-		btnMove = new JButton("Move");
-		btnMove.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				gameService.move();
-				snakePanel.repaint();
-			}
-		});
-
-		btnMove.setBounds(53, 21, 89, 23);
-		snakePanel.add(btnMove);
+		runThread();
 	}
 
 	/**
@@ -88,5 +76,11 @@ public class SnakeGame extends JFrame {
 		getContentPane().add(bgPanel);
 		bgPanel.setBounds(5, 5, WINDOW_SIZE + 25, WINDOW_SIZE + 48);
 		bgPanel.setLayout(null);
+	}
+
+	public void runThread() {
+		this.runnerService = new RunnerService(gameService, snakePanel);
+		this.thread = new Thread(runnerService);
+		thread.start();
 	}
 }
