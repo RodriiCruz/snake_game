@@ -1,5 +1,7 @@
 package utils;
 
+import static utils.Constants.GAME_OVER;
+
 import java.awt.event.KeyEvent;
 
 import javax.swing.JOptionPane;
@@ -25,7 +27,7 @@ public class Checker {
 	public void checkCollisions(Integer[] position) {
 		for (Integer[] aux : snake.getBody()) {
 			if (aux[0] == position[0] && aux[1] == position[1]) {
-				JOptionPane.showMessageDialog(null, "Game over");
+				JOptionPane.showMessageDialog(null, GAME_OVER);
 				System.exit(0);
 			}
 		}

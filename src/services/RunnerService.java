@@ -37,7 +37,6 @@ public class RunnerService implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
 

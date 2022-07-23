@@ -1,3 +1,7 @@
+import static utils.Constants.GAME_TITLE;
+import static utils.Constants.UNITS;
+import static utils.Constants.WINDOW_SIZE;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.KeyAdapter;
@@ -19,8 +23,6 @@ import services.RunnerService;
  */
 public class SnakeGame extends JFrame {
 
-	private final int WINDOW_SIZE = 600;
-	private final int QUANTITY = 30; // Cantidad de posiciones en una dirección
 	private Snake snake;
 	private Food food;
 	private JPanel contentPane;
@@ -69,19 +71,20 @@ public class SnakeGame extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		setResizable(false);
+		setTitle(GAME_TITLE);
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 
 		this.snake = new Snake(Color.GREEN);
 		this.food = new Food(Color.RED);
-		this.gameService = new GameService(QUANTITY, snake, food);
-		this.snakePanel = new GamePanel(WINDOW_SIZE, QUANTITY, snake, food);
+		this.gameService = new GameService(UNITS, snake, food);
+		this.snakePanel = new GamePanel(WINDOW_SIZE, UNITS, snake, food);
 		getContentPane().add(snakePanel);
 		snakePanel.setBounds(5, 5, WINDOW_SIZE, WINDOW_SIZE);
 		snakePanel.setOpaque(false);
 		snakePanel.setLayout(null);
 
-		this.bgPanel = new BackgroundPanel(WINDOW_SIZE, QUANTITY);
+		this.bgPanel = new BackgroundPanel(WINDOW_SIZE, UNITS);
 		getContentPane().add(bgPanel);
 		bgPanel.setBounds(5, 5, WINDOW_SIZE + 25, WINDOW_SIZE + 48);
 		bgPanel.setLayout(null);

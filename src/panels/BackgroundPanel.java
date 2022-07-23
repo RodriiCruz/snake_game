@@ -12,14 +12,14 @@ import javax.swing.JPanel;
 public class BackgroundPanel extends JPanel {
 
 	private Color backgroundColor;
-	private Integer size;
+	private Integer unitSize;
 	private Integer quantity;
 	private Integer margin;
 
 	public BackgroundPanel(Integer maxSize, Integer quantity) {
 		this.backgroundColor = Color.BLACK;
 		this.quantity = quantity;
-		this.size = maxSize / quantity;
+		this.unitSize = maxSize / quantity;
 		this.margin = (maxSize % quantity) / 2;
 	}
 
@@ -30,7 +30,7 @@ public class BackgroundPanel extends JPanel {
 
 		for (int i = 0; i < quantity; i++) {
 			for (int j = 0; j < quantity; j++) {
-				pinter.fillRect(margin + i * size, margin + j * size, size, size);
+				pinter.fillRect(margin + i * unitSize, margin + j * unitSize, unitSize, unitSize);
 			}
 		}
 	}
