@@ -1,6 +1,7 @@
 package utils;
 
 import static utils.Constants.GAME_OVER;
+import static utils.Constants.PLAY_AGAIN;
 
 import java.awt.event.KeyEvent;
 
@@ -24,13 +25,20 @@ public class Checker {
 		this.food = food;
 	}
 
-	public void checkCollisions(Integer[] position) {
+	public boolean checkCollisions(Integer[] position) {
+		boolean keepPlaying = false;
 		for (Integer[] aux : snake.getBody()) {
 			if (aux[0] == position[0] && aux[1] == position[1]) {
-				JOptionPane.showMessageDialog(null, GAME_OVER);
-				System.exit(0);
+				Integer option = JOptionPane.showInternalConfirmDialog(null, PLAY_AGAIN, GAME_OVER, 2,
+						JOptionPane.PLAIN_MESSAGE, null);
+
+				keepPlaying = option == 2 ? false : true;
+				if (!keepPlaying) {
+					System.exit(0);
+				}
 			}
 		}
+		return keepPlaying;
 	}
 
 	public boolean checkFood(Integer[] position) {

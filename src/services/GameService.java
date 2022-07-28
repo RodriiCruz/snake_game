@@ -23,6 +23,16 @@ public class GameService {
 		this.snake = snake;
 		this.food = food;
 		this.checker = new Checker(snake, food);
+		this.start();
+	}
+
+	public void start() {
+		Integer[] a = { quantity / 2 - 1, quantity / 2 - 1 };
+		Integer[] b = { quantity / 2, quantity / 2 - 1 };
+
+		snake.getBody().clear();
+		snake.eatFood(a);
+		snake.eatFood(b);
 	}
 
 	public void move() {
@@ -51,7 +61,9 @@ public class GameService {
 		Integer[] newDir = { Math.floorMod(snakeHead[0] + newX, quantity),
 				Math.floorMod(snakeHead[1] + newY, quantity) };
 
-		this.checker.checkCollisions(newDir);
+		if (this.checker.checkCollisions(newDir)) {
+			start();
+		}
 
 		boolean isFood = this.checker.checkFood(newDir);
 		if (isFood) {
